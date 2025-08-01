@@ -260,4 +260,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Made with ❤️ for secure and transparent voting**
 
-*Last updated: December 2024* 
+*Last updated: December 2024* #   O n l i n e _ v o t i n g _ s y a t e m  
+ 
