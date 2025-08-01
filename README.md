@@ -1,98 +1,61 @@
 # 🗳️ Online Voting System
 
-A secure, modern, and user-friendly online voting platform is designed for educational institutions like SMVITM. This system enables digital voting with OTP verification, real-time results, and comprehensive admin management.
-
-![Voting System](https://img.shields.io/badge/Status-Active-brightgreen)
-![PHP](https://img.shields.io/badge/PHP-7.4+-blue)
-![MySQL](https://img.shields.io/badge/MySQL-5.7+-orange)
-![License](https://img.shields.io/badge/License-MIT-green)
-
-## 📋 Table of Contents
-
-- [Features](#-features)
-- [Screenshots](#-screenshots)
-- [Technology Stack](#-technology-stack)
-- [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Usage](#-usage)
-- [Database Schema](#-database-schema)
-- [Security Features](#-security-features)
-- [API Endpoints](#-api-endpoints)
-- [Contributing](#-contributing)
-- [License](#-license)
+A comprehensive, secure, and user-friendly online voting system designed for educational institutions like SMVITM. This system enables students to participate in democratic elections through a modern web-based platform with robust security features.
 
 ## ✨ Features
 
-### 🎯 Core Features
-- **Secure Voter Authentication** - OTP-based phone verification
-- **Multi-Role Access** - Separate portals for voters and administrators
-- **Real-time Voting** - Live ballot casting with instant validation
-- **Result Visualization** - Interactive charts and statistics
-- **Candidate Management** - Add, edit, and manage candidates with symbols
-- **Position Management** - Create and manage different voting positions
-- **Voter Registration** - Streamlined registration process
-- **Admin Dashboard** - Comprehensive administrative controls
+### 🔐 Security & Authentication
+- **Multi-factor Authentication**: OTP-based verification for voter login
+- **Session Management**: Secure session handling with automatic logout
+- **Password Protection**: Encrypted password storage and validation
+- **Voter Verification**: ID proof upload and verification system
+- **Anti-duplicate Voting**: Prevents multiple votes from the same voter
 
-### 🔐 Security Features
-- **OTP Verification** - Two-factor authentication via SMS
-- **Session Management** - Secure session handling
-- **Input Validation** - Comprehensive data validation
-- **SQL Injection Protection** - Prepared statements
-- **XSS Prevention** - Output sanitization
+### 👥 User Management
+- **Voter Registration**: Complete registration system with ID verification
+- **Admin Panel**: Comprehensive administrative dashboard
+- **User Profiles**: Personal voter profiles with photo and details
+- **Account Management**: Password reset and profile updates
 
-### 📊 Admin Features
-- **Voter Management** - Add, edit, delete voter records
-- **Candidate Management** - Manage candidates and their symbols
-- **Position Management** - Create and manage voting positions
-- **Result Management** - View and manage voting results
-- **Voting Schedule** - Set up voting periods
-- **System Reset** - Reset voting data when needed
+### 🗳️ Voting System
+- **Multiple Positions**: Support for various election positions (Chairman, Secretary, etc.)
+- **Candidate Management**: Add, edit, and manage candidates with symbols
+- **Real-time Results**: Live vote counting and result display
+- **Voting Schedule**: Configurable voting start and end dates
+- **Ballot System**: Intuitive voting interface with candidate symbols
 
-### 👥 Voter Features
-- **Easy Registration** - Simple registration process
-- **Phone Number Change** - Request phone number updates
-- **Secure Voting** - One-time voting with verification
-- **Result Viewing** - View election results
-- **Profile Management** - Update personal information
+### 📊 Results & Analytics
+- **Live Results**: Real-time vote counting and display
+- **Result Charts**: Visual representation using Chart.js
+- **Vote Statistics**: Detailed voting statistics and analytics
+- **Export Capabilities**: Result export functionality
 
-## 🖼️ Screenshots
-
-### Landing Page
-![Landing Page](screenshots/landing-page.png)
-
-### Voter Login
-![Voter Login](screenshots/voter-login.png)
-
-### Admin Dashboard
-![Admin Dashboard](screenshots/admin-dashboard.png)
-
-### Voting Interface
-![Voting Interface](screenshots/voting-interface.png)
+### 🎨 User Interface
+- **Modern Design**: Responsive and intuitive user interface
+- **Mobile Friendly**: Optimized for all device sizes
+- **Accessibility**: User-friendly navigation and design
+- **Visual Feedback**: Progress bars and status indicators
 
 ## 🛠️ Technology Stack
 
-### Backend
-- **PHP 7.4+** - Server-side scripting
-- **MySQL 5.7+** - Database management
-- **Apache/Nginx** - Web server
+- **Backend**: PHP 7.4+
+- **Database**: MySQL/MariaDB
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Charts**: Chart.js
+- **Icons**: Font Awesome
+- **Server**: Apache/Nginx
 
-### Frontend
-- **HTML5** - Markup structure
-- **CSS3** - Styling and responsive design
-- **JavaScript** - Interactive functionality
-- **Chart.js** - Data visualization
+## 📋 Prerequisites
 
-### Database
-- **MySQL** - Primary database
-- **phpMyAdmin** - Database administration
+Before running this application, ensure you have:
 
-## 📦 Installation
+- **Web Server**: Apache or Nginx
+- **PHP**: Version 7.4 or higher
+- **MySQL**: Version 5.7 or higher / MariaDB 10.4+
+- **phpMyAdmin**: For database management (optional)
+- **File Upload Support**: PHP file upload enabled
 
-### Prerequisites
-- PHP 7.4 or higher
-- MySQL 5.7 or higher
-- Apache/Nginx web server
-- Composer (optional)
+## 🚀 Installation
 
 ### Step 1: Clone the Repository
 ```bash
@@ -101,165 +64,188 @@ cd online-voting-system
 ```
 
 ### Step 2: Database Setup
-1. Create a MySQL database named `voting`
+1. Create a new MySQL database named `voting`
 2. Import the database schema:
-```bash
-mysql -u your_username -p voting < database/voting.sql
-```
+   ```bash
+   mysql -u root -p voting < database/voting.sql
+   ```
+   Or use phpMyAdmin to import the `database/voting.sql` file
 
 ### Step 3: Configure Database Connection
-Update the database configuration in your PHP files:
+Update the database connection settings in the following files:
+- `voting/includes/all-select-data.php`
+- `voting/admin/admin_welcome.php`
+- `voting/voting-system.php`
+
+Default configuration:
 ```php
-$host = 'localhost';
-$username = 'your_db_username';
-$password = 'your_db_password';
-$database = 'voting';
+$con = mysqli_connect('localhost', 'root', '', 'voting');
 ```
 
 ### Step 4: Web Server Configuration
-1. Point your web server to the project directory
-2. Ensure PHP has write permissions for session files
-3. Configure your web server to handle PHP files
+1. Place the project in your web server's document root
+2. Ensure proper file permissions (755 for directories, 644 for files)
+3. Configure your web server to serve the application
 
-### Step 5: SMS Gateway Configuration (Optional)
-For OTP functionality, configure your SMS gateway:
-```php
-// Update SMS configuration in relevant files
-$sms_api_key = 'your_sms_api_key';
-$sms_sender_id = 'VOTING';
+### Step 5: Initial Setup
+1. Access the application: `http://localhost/online-voting-system/`
+2. Default admin credentials:
+   - **Email**: ssvps@gmail.com
+   - **Password**: pass@123
+
+## 📁 Project Structure
+
+```
+Online_Voting_System/
+├── database/
+│   └── voting.sql              # Database schema
+├── voting/
+│   ├── admin/                  # Admin panel files
+│   │   ├── admin-panel.php    # Main admin dashboard
+│   │   ├── candidates.php      # Candidate management
+│   │   ├── voters.php         # Voter management
+│   │   ├── result.php         # Results display
+│   │   └── symbol/            # Candidate symbols
+│   ├── css/                   # Stylesheets
+│   ├── js/                    # JavaScript files
+│   ├── includes/              # Shared PHP includes
+│   ├── img/                   # Images and assets
+│   ├── registration.php       # Voter registration
+│   ├── voting-system.php      # Main voting interface
+│   └── index.php             # Voter login
+├── index.html                 # Landing page
+├── styles.css                 # Main stylesheet
+└── logo.jpeg                 # Application logo
 ```
 
-## ⚙️ Configuration
-
-### Environment Variables
-Create a `.env` file in the root directory:
-```env
-DB_HOST=localhost
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
-DB_NAME=voting
-SMS_API_KEY=your_sms_api_key
-SMS_SENDER_ID=VOTING
-```
-
-### File Permissions
-```bash
-chmod 755 -R Online_Voting_System/
-chmod 777 -R Online_Voting_System/voting/symbol/
-```
-
-## 🚀 Usage
-
-### For Voters
-1. **Registration**: Visit `/voting/registration.php`
-2. **Login**: Visit `/voting/` and enter your phone number
-3. **OTP Verification**: Enter the OTP sent to your phone
-4. **Voting**: Select candidates and cast your vote
-5. **Results**: View real-time election results
+## 🎯 Usage Guide
 
 ### For Administrators
-1. **Login**: Visit `/voting/admin/` with admin credentials
-2. **Dashboard**: Access comprehensive admin controls
-3. **Manage Voters**: Add, edit, or delete voter records
-4. **Manage Candidates**: Add candidates with symbols
-5. **Monitor Results**: View voting statistics and results
 
-### Default Admin Credentials
-- **Email**: ssvps@gmail.com
-- **Password**: pass@123
+1. **Login to Admin Panel**
+   - Navigate to `/voting/admin/`
+   - Use admin credentials to login
 
-## 🗄️ Database Schema
+2. **Manage Elections**
+   - Set voting schedule and title
+   - Add/remove election positions
+   - Manage candidates and their symbols
 
-### Core Tables
-- `admin` - Administrator accounts
-- `voter` - Voter registration data
-- `candidate` - Candidate information and symbols
-- `can_position` - Available voting positions
-- `voting` - Voting records and results
-- `register` - Voter registration details
+3. **Voter Management**
+   - View registered voters
+   - Verify voter registrations
+   - Manage voter accounts
 
-### Key Relationships
-- Voters are linked to candidates through voting records
-- Candidates are associated with positions
-- Admin manages all system operations
+4. **Monitor Results**
+   - View real-time voting results
+   - Export result data
+   - Generate reports
 
-## 🔒 Security Features
+### For Voters
 
-### Authentication & Authorization
-- **Session-based authentication**
-- **Role-based access control**
-- **OTP verification for voters**
-- **Admin login with email/password**
+1. **Registration**
+   - Visit the registration page
+   - Fill in personal details
+   - Upload ID proof
+   - Complete verification process
 
-### Data Protection
-- **Input sanitization**
-- **SQL injection prevention**
-- **XSS protection**
-- **CSRF token validation**
+2. **Voting Process**
+   - Login with registered credentials
+   - Verify identity via OTP
+   - Select candidates for each position
+   - Submit vote securely
 
-### Voting Security
-- **One-time voting per voter**
-- **Vote verification**
-- **Audit trail maintenance**
-- **Result integrity checks**
+3. **View Results**
+   - Check voting status
+   - View election results
+   - Track participation
 
-## 📡 API Endpoints
+## 🔧 Configuration
 
-### Voter Endpoints
-- `POST /voting/otpform.php` - OTP verification
-- `POST /voting/registration.php` - Voter registration
-- `POST /voting/voting-system.php` - Cast vote
-- `GET /voting/result.php` - View results
+### Database Configuration
+Edit database connection settings in PHP files:
+```php
+$con = mysqli_connect('hostname', 'username', 'password', 'database');
+```
 
-### Admin Endpoints
-- `POST /voting/admin/admin_welcome.php` - Admin login
-- `GET /voting/admin/voters.php` - Manage voters
-- `GET /voting/admin/candidates.php` - Manage candidates
-- `GET /voting/admin/result.php` - View results
+### Email Configuration (Optional)
+Configure SMTP settings for email notifications:
+```php
+// Add SMTP configuration in relevant files
+$smtp_host = 'smtp.gmail.com';
+$smtp_port = 587;
+$smtp_username = 'your-email@gmail.com';
+$smtp_password = 'your-app-password';
+```
+
+### File Upload Settings
+Ensure proper file upload configuration in `php.ini`:
+```ini
+upload_max_filesize = 10M
+post_max_size = 10M
+max_execution_time = 300
+```
+
+## 🛡️ Security Features
+
+- **Input Validation**: All user inputs are validated and sanitized
+- **SQL Injection Prevention**: Prepared statements and parameterized queries
+- **XSS Protection**: Output encoding and validation
+- **Session Security**: Secure session handling with timeout
+- **File Upload Security**: Restricted file types and size limits
+- **Access Control**: Role-based access control for admin functions
+
+## 📱 Responsive Design
+
+The application is fully responsive and works seamlessly on:
+- Desktop computers
+- Tablets
+- Mobile phones
+- Various screen sizes and orientations
+
+## 🔄 Version History
+
+- **v1.0.0**: Initial release with core voting functionality
+- **v1.1.0**: Added admin panel and result management
+- **v1.2.0**: Enhanced security and UI improvements
+- **v1.3.0**: Mobile responsiveness and accessibility features
 
 ## 🤝 Contributing
 
 We welcome contributions! Please follow these steps:
 
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Commit your changes**: `git commit -m 'Add amazing feature'`
-4. **Push to the branch**: `git push origin feature/amazing-feature`
-5. **Open a Pull Request**
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Development Guidelines
-- Follow PHP PSR-12 coding standards
-- Write meaningful commit messages
-- Add tests for new features
-- Update documentation as needed
-
-## 📝 License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Support
+## 🆘 Support
 
-### Contact Information
-- **Email**: info@smvitmvoting.com
-- **Phone**: +91 98765 43210
-- **Technical Support**: support@smvitmvoting.com
+For support and questions:
 
-### Documentation
-- [User Guide](docs/user-guide.md)
-- [Admin Manual](docs/admin-manual.md)
-- [API Documentation](docs/api-docs.md)
+- **Email**: support@smvitmvoting.com
+- **Documentation**: Check the project wiki
+- **Issues**: Report bugs via GitHub Issues
+- **Discussions**: Use GitHub Discussions for questions
 
 ## 🙏 Acknowledgments
 
-- **SMVITM** - For providing the platform requirements
-- **PHP Community** - For excellent documentation and support
-- **MySQL Team** - For robust database management
-- **Chart.js** - For beautiful data visualization
+- **SMVITM**: For providing the platform and requirements
+- **PHP Community**: For excellent documentation and resources
+- **Chart.js**: For beautiful chart visualizations
+- **Font Awesome**: For comprehensive icon library
+
+## 📞 Contact
+
+- **Project Maintainer**: [Your Name]
+- **Email**: [your-email@domain.com]
+- **Website**: [https://your-website.com]
 
 ---
 
-**Made with ❤️ for secure and transparent voting**
-
-*Last updated: December 2024* #   O n l i n e _ v o t i n g _ s y a t e m 
- 
- 
+**Note**: This system is designed for educational institutions and should be deployed in a secure environment with proper backup and monitoring systems in place. 
