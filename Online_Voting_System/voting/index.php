@@ -1,7 +1,7 @@
 <?php
 session_start();
-session_destroy();
-error_reporting(0);
+// session_destroy();
+// error_reporting(0);
 $_SESSION['userLogin'] = 0;
 ?>
 
